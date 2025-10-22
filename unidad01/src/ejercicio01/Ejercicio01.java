@@ -16,7 +16,7 @@ public class Ejercicio01 {
 	        String rutaBase = "C:\\Users\\" + usuario;
 
 	        // Archivo que contiene la estructura
-	        String archivoEstructura = "src\\unidad01\\estructura.txt";
+	        String archivoEstructura = "src\\ejercicio01\\estructura.txt";
 
 	    
 	        try (BufferedReader br = new BufferedReader(new FileReader(archivoEstructura))) {
