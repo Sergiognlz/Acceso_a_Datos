@@ -16,13 +16,18 @@ public class Ejercicio01 {
 
         // Ruta base donde se crearán las carpetas: "C:\Users\sgonzalez"
         String rutaBase = "C:\\Users\\" + usuario;
+        
+
+		// Variable que contendrá cada línea leída del archivo estructura.txt
+		String linea;
 
         // Archivo de texto que contiene la "estructura de carpetas"
         String archivoEstructura = "src\\ejercicio01\\estructura.txt";
 
         // try-with-resources: abre el BufferedReader y lo cierra automáticamente
         try (BufferedReader br = new BufferedReader(new FileReader(archivoEstructura))) {
-            String linea;
+        	
+        
             // Leer el archivo línea por línea
             while ((linea = br.readLine()) != null) {
                 // Construir la ruta completa de la carpeta
