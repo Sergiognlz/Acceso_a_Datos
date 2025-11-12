@@ -8,7 +8,7 @@ import java.sql.SQLException;
 public class Conexion {
 	
     // Método estático que intenta conectarse a la base de datos y devuelve true si tiene éxito
-	public static void conectarBD() {
+	public static Connection conectarBD() {
 		
         // Variable que indica si la conexión se realizó correctamente
         boolean exito = false;
@@ -57,6 +57,7 @@ public class Conexion {
                 e.printStackTrace();
             }
         }
+        return conexion;
        
 	}
 }
