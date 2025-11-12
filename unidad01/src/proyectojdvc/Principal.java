@@ -56,22 +56,22 @@ public class Principal {
 						} else {
 							System.err.println("Error durante la creación de tablas");
 						}
-					}else {
+					} else {
 						System.out.println("Debes crear primero la tabla Mesa");
 					}
 				}
 				// Caso 4: Crea una tabla Pedido
 				case 4 -> {
-					if(CRUD.existeTablaFactura()&&CRUD.existeTablaProducto()) {
-					if (CRUD.crearTablaPedido()) {
-						System.out.println("Tabla creada correctamente");
+					if (CRUD.existeTablaFactura() && CRUD.existeTablaProducto()) {
+						if (CRUD.crearTablaPedido()) {
+							System.out.println("Tabla creada correctamente");
+						} else {
+							System.err.println("Error durante la creación de tablas");
+						}
 					} else {
-						System.err.println("Error durante la creación de tablas");
+						System.out.println("Debes crear primero la tabla Factura y Producto");
 					}
-				}else {
-					System.out.println("Debes crear primero la tabla Factura y Producto");
 				}
-					}
 
 				// Caso 2: Crea todas las tablas
 				case 5 -> {
