@@ -12,7 +12,9 @@ public class Mesa {
 	public Mesa(int idMesa, int numComensales, short reserva) {
 		this.idMesa=idMesa;
 		this.numComensales=numComensales;
+		if(reserva==1||reserva==0) {
 		this.reserva=reserva;
+		}
 	}
 	
 	public int getIdMesa(){
