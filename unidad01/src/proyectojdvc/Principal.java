@@ -178,12 +178,14 @@ public class Principal {
 
     // modificar datos
     public static void menuModificar() throws SinConexionException {
+
         System.out.println("\n===== MODIFICAR =====");
         System.out.println("1. Mesa");
         System.out.println("2. Producto");
         System.out.println("3. Factura");
         System.out.println("4. Pedido");
         System.out.print("Opción: ");
+
         int op = sc.nextInt();
         sc.nextLine();
 
@@ -208,30 +210,60 @@ public class Principal {
             default -> "";
         };
 
+        // ============================
+        // LISTAR LA TABLA ANTES DE MODIFICAR
+        // ============================
+        System.out.println("\nMostrando registros actuales de " + tabla + "...\n");
+        CRUD.mostrarDatosTabla(con, tabla);
+        System.out.println();
+
+        // ============================
+        // PEDIR ID A MODIFICAR
+        // ============================
         System.out.print("Ingrese el ID del registro a modificar: ");
         int id = sc.nextInt();
         sc.nextLine();
 
         Map<String, Object> nuevosValores = new HashMap<>();
-        while (true) {
+
+        boolean continuar = true;
+
+        while (continuar) {
+
             System.out.print("Campo a modificar (o 'fin' para terminar): ");
             String campo = sc.nextLine();
-            if (campo.equalsIgnoreCase("fin")) break;
-            System.out.print("Nuevo valor: ");
-            String valor = sc.nextLine();
-            Object valFinal;
-            if (valor.matches("\\d+")) valFinal = Integer.parseInt(valor);
-            else if (valor.matches("\\d+\\.\\d+")) valFinal = Double.parseDouble(valor);
-            else valFinal = valor;
-            nuevosValores.put(campo, valFinal);
+
+            // condición de salida sin usar break
+            continuar = !campo.equalsIgnoreCase("fin");
+
+            if (continuar) {
+                System.out.print("Nuevo valor: ");
+                String valor = sc.nextLine();
+
+                Object valFinal;
+                if (valor.matches("\\d+")) {
+                    valFinal = Integer.parseInt(valor);
+                } else if (valor.matches("\\d+\\.\\d+")) {
+                    valFinal = Double.parseDouble(valor);
+                } else {
+                    valFinal = valor;
+                }
+
+                nuevosValores.put(campo, valFinal);
+            }
         }
 
+        // ============================
+        // APLICAR CAMBIOS
+        // ============================
         if (CRUD.modificarFila(con, tabla, campoFiltro, id, nuevosValores)) {
             System.out.println("Registro modificado correctamente.");
         } else {
             System.out.println("Error al modificar registro.");
         }
     }
+
+
 
     //borrar datos
     public static void menuBorrar() throws SinConexionException {
